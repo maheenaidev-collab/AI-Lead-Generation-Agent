@@ -1,0 +1,15 @@
+from fastapi import FastAPI
+from agent import generate_leads
+
+app = FastAPI()
+
+@app.get("/leads")
+
+def leads():
+
+    data = generate_leads(
+        "Law Firms",
+        "New York"
+    )
+
+    return {"leads": data}

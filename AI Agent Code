@@ -1,0 +1,31 @@
+import openai
+
+openai.api_key = "YOUR_API_KEY"
+
+def generate_leads(industry, location):
+
+    prompt = f"""
+    Generate 5 potential business leads.
+
+    Industry: {industry}
+    Location: {location}
+
+    For each lead provide:
+    - Business name
+    - Short description
+    - Cold outreach message
+    """
+
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role":"user","content":prompt}]
+    )
+
+    return response["choices"][0]["message"]["content"]
+
+
+if __name__ == "__main__":
+
+    leads = generate_leads("Law Firms", "New York")
+
+    print(leads)
